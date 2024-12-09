@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Custom Event</title>
+    <style>
+      body{
+        margin:0;
+        height:100vh;
+      }
+      *{
+        box-sizing: border-box;
+        margin:0;
+      }
+      div{
+        height:100vh;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+      }
+      p{
+       font-size: 200px;
+      text-align: center;
+      align-self: center;
+      
+      }
+   
+    </style>
+    <body>
+      <div>  <p>🎈</p>
+    </div>
+    </body>
+    <script>
+const baloon=document.querySelector("p");
+const div=document.querySelector("div");
+let size=parseInt(window.getComputedStyle(baloon).fontSize);;
+let perc=0.1*size;
+let explode=window.innerHeight-100;
+console.log(window.getComputedStyle(baloon).fontSize)
+document.body.addEventListener("keydown",baloonExplosion)
+
+function baloonExplosion(event){
+ 
+  if(size>explode&&size>0){
+const explosion=document.createElement("p");
+explosion.textContent="💥"
+explosion.style.fontSize=size;
+div.removeChild(baloon);
+div.appendChild(explosion);
+document.body.removeEventListener("keydown",baloonExplosion)
+  }
+perc=0.1*size;
+console.log(`${window.innerHeight  }ds ${size+perc}`)
+
+  if(event.key==="ArrowUp"){
+
+  baloon.style.fontSize=`${size+perc}px`;
+if(size+perc<window.innerHeight)
+size=size+perc;}
+if(event.key==="ArrowDown"){
+baloon.style.fontSize=`${size-perc}px`;
+size=size-perc;
+}
+}
+
+    </script>
+
+
+</html>
